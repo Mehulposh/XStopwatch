@@ -33,7 +33,7 @@ function App(){
     const sec = Math.floor((time%60000)/1000);
 
 
-    return `${min.toString()}: ${sec.toString().padStart(2,"0")}`;
+    return `${min.toString()}:${sec.toString().padStart(2,"0")}`;
   }
   return (
     <div>
