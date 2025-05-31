@@ -1,5 +1,5 @@
 import { useState,useEffect,useRef } from 'react'
-import {format} from 'date-fns';
+
 
 function App(){
   const [time,setTime] = useState(0);
@@ -15,7 +15,7 @@ function App(){
     }else {
       clearInterval(timeRef.current);
     }
-  },[isRunning]);
+  },[isRunning,time]);
 
 
   const handleRun = () => {
@@ -24,15 +24,20 @@ function App(){
 
   const handleReset = () => {
     setTime(0);
+    setIsRunning(false)
   }
 
 
   const timeFormat = (time) => {
-    return format(time, 's:SS')
+    const min = Math.floor(time/60000);
+    const sec = Math.floor((time%60000)/1000);
+
+
+    return `${min.toString()}: ${sec.toString().padStart(2,0)}`;
   }
   return (
     <div>
-      <h1>StopWatch</h1>
+      <h1>Stopwatch</h1>
 
       <h4>Time: {timeFormat(time)}</h4>
       <div>
